@@ -23,3 +23,5 @@
 ### Other
 
 * [ ] Helmet middleware for security
+* [ ] JWT phrase to ENV variable
+* [ ] Mongodb link to ENV varibable
