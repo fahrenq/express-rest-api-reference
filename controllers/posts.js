@@ -4,8 +4,13 @@ const Post = require('../models/post');
 
 exports.before_id_param = (req, res, next, id) => {
   Post.findById(id)
+    .populate({
+      path: 'user',
+      select: 'name',
+    })
     .exec()
     .then((doc) => {
+      if (!doc) res.status(404).end();
       req.post = doc;
       next();
     })
@@ -26,8 +31,7 @@ exports.index = (req, res, next) => {
 };
 
 exports.get = (req, res) => {
-  if (req.post) res.status(200).json({ post: req.post });
-  res.status(404).end();
+  res.status(200).json({ post: req.post });
 };
 
 exports.create = (req, res, next) => {
@@ -35,6 +39,7 @@ exports.create = (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     content: req.body.content,
+    user: req.userId,
   };
 
   Post.create(params)
@@ -45,8 +50,14 @@ exports.create = (req, res, next) => {
 };
 
 exports.update = (req, res, next) => {
-  req.post
-    .update({ $set: req.body }, { runValidators: true })
+  if (req.userId !== req.post.user.id) res.status(403).end();
+
+  Post
+    .findByIdAndUpdate(
+      req.post.id,
+      { $set: req.body },
+      { new: true, runValidators: true },
+    )
     .then((doc) => {
       res.status(200).json({ post: doc });
     })
@@ -54,6 +65,8 @@ exports.update = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
+  if (req.userId !== req.post.user.id) res.status(403).end();
+
   req.post
     .remove()
     .then(() => {

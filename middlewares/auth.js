@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config');
 
-const fetchToken = ({ headers }) => headers.authorization.split(' ')[1];
+const fetchToken = ({ headers }) =>
+  (headers.authorization
+    ? headers.authorization.split(' ')[1]
+    : '');
 
 exports.required = (req, res, next) => {
   const token = fetchToken(req);

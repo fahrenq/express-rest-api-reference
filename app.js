@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -11,6 +12,7 @@ mongoose.connect('mongodb+srv://test-user:test-password@cluster0-gqyp0.mongodb.n
 if (production) app.use(morgan('combined'));
 else app.use(morgan('dev'));
 
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors());
 

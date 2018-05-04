@@ -1,13 +1,14 @@
 const router = require('express').Router();
 const controller = require('../controllers/users');
+const auth = require('../middlewares/auth');
 
+// Can't use router.param here because we have to expose
+// different user info based on auth middleware
 // router.param('id', controller.before_id_param);
 
-router.post('/', controller.create);
 router.post('/login', controller.login);
-// router.get('/:id', controller.get);
-// router.post('/', controller.create);
-// router.patch('/:id', controller.update);
-// router.delete('/:id', controller.delete);
+router.get('/:id', auth.optional, controller.get);
+router.post('/', controller.create);
+router.patch('/:id', auth.required, controller.update);
 
 module.exports = router;

@@ -5,23 +5,24 @@
 ### Post entity
 
 * [x] CRUD w/o authorization
-* [ ] Authorization
+* [x] Authorization
 
 ### User entity / Authentication
 
 * [x] JWT authentication
-* [ ] JWT token expiration and renewal
-* [ ] Email validation (format)
-* [ ] Email validation (uniqueness, return validation error instead mongo engine error)
-* [ ] Password hashing
+* [x] Password hashing
+* [x] Get user with different
+* [X] Edit user
+* [X] Email validation (uniqueness, return validation error instead mongo engine error)
 * [ ] Email confirmation
 * [ ] Password reset (Forgot password functionality)
 * [ ] Registration and Login with Google
 * [ ] Registration and Login with Facebook
 * [ ] Registration and Login with Twitter
+* [ ] JWT token expiration and renewal
 
 ### Other
 
-* [ ] Helmet middleware for security
+* [X] Helmet middleware for security
 * [ ] JWT phrase to ENV variable
 * [ ] Mongodb link to ENV varibable
