@@ -4,10 +4,11 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const { mongoEndpoint } = require('./config');
 
 const production = process.env.NODE_ENV === 'production';
 
-mongoose.connect('mongodb+srv://test-user:test-password@cluster0-gqyp0.mongodb.net/test');
+mongoose.connect(mongoEndpoint);
 
 if (production) app.use(morgan('combined'));
 else app.use(morgan('dev'));

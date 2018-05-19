@@ -24,5 +24,6 @@
 ### Other
 
 * [X] Helmet middleware for security
+* [X] Add mailer interface with templates and SES
 * [ ] JWT phrase to ENV variable
 * [ ] Mongodb link to ENV varibable
