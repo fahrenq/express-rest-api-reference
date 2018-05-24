@@ -10,5 +10,6 @@ router.post('/login', controller.login);
 router.get('/:id', auth.optional, controller.get);
 router.post('/', controller.create);
 router.patch('/:id', auth.required, controller.update);
+router.post('/:id/confirm-email', controller.confirmEmail);
 
 module.exports = router;

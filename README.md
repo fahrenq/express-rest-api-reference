@@ -14,7 +14,7 @@
 * [x] Get user with different
 * [X] Edit user
 * [X] Email validation (uniqueness, return validation error instead mongo engine error)
-* [ ] Email confirmation
+* [-] Email confirmation
 * [ ] Password reset (Forgot password functionality)
 * [ ] Registration and Login with Google
 * [ ] Registration and Login with Facebook

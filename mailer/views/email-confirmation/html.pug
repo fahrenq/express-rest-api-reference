@@ -1,5 +1,5 @@
 extends ../layouts/default.pug
 
 block content
-  p #{token}'s Pug source code!
+  a(href=`/confirm-email?token=${token}&id=${id}`) Confirm email
 
